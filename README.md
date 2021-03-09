@@ -72,3 +72,20 @@ meaning for each page that the website/app has it exists different classes defin
 and which elements are inside. This allows us to encapsulate the code and be highly reusable for the future test.
 
 In this test is not developed but Cucumber allows us to build it inside several CI tools and external utils such as report portals or dockers
+
+##WHO CAN WRITE TEST
+The test should be written by the QA assigned to the team/development as is not on the tech development, but it is present in the design of it, it can 
+be also done by a developer if he has knowledge on how the framework works and how the different layers are organized.
+
+##WHEN WE SHOULD RUN THE TEST
+The test can be runned whenever the teams requires to ensure it is working, when a release is coming or whenever they want to see which are the status of the product. Despite
+that, following the CI/CD principles, should be run first time in the morning before the shift start, that makes easy for the
+company to track the status of the product and identify easily the errors and how to solve them.
+
+##WHAT HAPPENS IF A TEST FAILS
+As we mention in the previous section, following the CI/CD principles, the test is run each morning, so what to do if we find an error? Don't worry it's the goal of
+the suite, that means that some QA should go to the report portal or the logs and search what happened, for this to be possible is important to refer to the next section
+
+##WHAT INFORMATION WE HAVE
+Loggin properly the errors is as much important and having a healthy and clean suite, this means that each time we make some assertion, or if some step can throw an 
+exception, this should be reported and be accessible in the reporting. Cucumber logs the error, but we can add as much information as we can.
