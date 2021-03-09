@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite">
+    <test name="Colvin-end-2-end">
+        <classes>
+            <class name="com.colvin.TestRunner.TestRunner"/>
+        </classes>
+    </test> <!-- Colvin-end-2-end -->
+</suite> <!-- Default Suite -->
