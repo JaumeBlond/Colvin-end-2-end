@@ -2,16 +2,18 @@ package com.colvin.Actions;
 
 import com.colvin.Driver.DriverFactory;
 import com.colvin.PageSteps.HomepageSteps;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Actions extends HomepageSteps {
 
+    String strAllowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    Random random = new Random();
 
     public Actions() {
         this.driver = DriverFactory.getDriver();
@@ -31,5 +33,14 @@ public class Actions extends HomepageSteps {
 
     public void setImplicitWait(int secondsToWait) {
         this.driver.manage().timeouts().implicitlyWait(secondsToWait, TimeUnit.SECONDS);
+    }
+
+    public String generateWord() {
+        StringBuilder sbRandomString = new StringBuilder(12);
+        for(int i = 0 ; i < 12; i++){
+            int randomInt = random.nextInt(strAllowedCharacters.length());
+            sbRandomString.append( strAllowedCharacters.charAt(randomInt) );
+        }
+        return sbRandomString.toString();
     }
 }

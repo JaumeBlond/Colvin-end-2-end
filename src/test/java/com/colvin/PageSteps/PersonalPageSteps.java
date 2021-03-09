@@ -9,6 +9,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -71,56 +76,101 @@ public class PersonalPageSteps {
         elements.getSubmitButton().click();
     }
 
-    @Then("a new reminder is added")
-    public void aNewReminderIsAdded() {
-        assertThat("A new reminder has been added", elements.getReminderAdded().isDisplayed(),is(true));
+    @Then("the reminder is {string}")
+    public void aNewReminderIsAdded(String action) {
+        switch (action.toUpperCase()){
+            case "added":
+                assertThat("A new reminder hasn't been added", elements.getReminderAdded().isDisplayed(),is(true));
+                System.out.println("A new reminder has been added");
+                break;
+            case "deleted":
+                assertThat("A new reminder hasn't been deleted", elements.getReminderAdded().isDisplayed(),is(false));
+                System.out.println("A new reminder has been added");
+                break;
+        }
     }
 
     @When("I click on sign off")
     public void iClickOnSignOff() {
-
-    }
-
-    @Then("when i click again the information is updated")
-    public void whenIClickAgainTheInformationIsUpdated() {
-
+        elements.getSignOff().click();
     }
 
     @And("click the save button")
     public void clickTheSaveButton() {
-
+        elements.getSubmitButton().click();
+        actions.waitForElementToLoad(elements.getSaved());
+        assertThat("Not saved", elements.getSaved().getText().equals("Información del perfil actualizada"), is(true));
     }
 
     @And("fill the contact fields")
     public void fillTheContactFields() {
-
+        elements.getClickGeneder().click();
+        elements.getSelectGender().click();
+        elements.getStreet().clear();
+        elements.getCity().clear();
+        elements.getFloor().clear();
+        elements.getPostalCode().clear();
+        elements.getStreet().sendKeys(actions.generateWord());
+        elements.getFloor().sendKeys(actions.generateWord());
+        elements.getCity().sendKeys(actions.generateWord());
+        elements.getPostalCode().sendKeys("08020");
+        elements.getCountryCode().click();
     }
 
     @And("click on modify")
     public void clickOnModify() {
-
-
+        elements.getModifyData().click();
     }
 
     @And("click on {string} badge")
-    public void clickOnTwitterBadge() {
-
+    public void clickOnTwitterBadge(String rrss) {
+        switch (rrss.toUpperCase()){
+            case "WHATSAPP":
+                elements.getIsWhatsapp().click();
+                break;
+            case "TWITTER":
+                elements.getIsTwitter().click();
+                break;
+            case "FACEBOOK":
+                elements.getIsFacebook().click();
+                break;
+            case "EMAIL":
+                elements.getIsEmail().click();
+                break;
+        }
     }
 
-    @Then("the RRSS is opened")
-    public void theRRSSIsOpened() {
+    @Then("{string} is opened")
+    public void theRRSSIsOpened(String rrss) {
+        ArrayList<String> tabs= new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        System.out.println(driver.getCurrentUrl());
+        assertThat("Tab Do not open",driver.getCurrentUrl().contains(rrss),is(true));
     }
 
     @And("click the use button")
     public void clickTheUseButton() {
+        elements.getUsePromotion().click();
     }
 
     @And("i click delete")
     public void iClickDelete() {
-        
+        elements.getDeleteReminder().click();
     }
 
     @Then("the reminder is deleted")
     public void theReminderIsDeleted() {
+    }
+
+    @Then("check i don't have purchases")
+    public void checkIDonTHavePurchases() {
+        assertThat("I have purchased something", elements.getNoPurchases().getText().equals("No hay pedidos concluidos."), is(true));
+        System.out.println("I haven't purchased something");
+
+    }
+
+    @And("Click on subscriptions")
+    public void clickOnSuscriptions() {
+        elements.getGetSubscriptions().click();
     }
 }

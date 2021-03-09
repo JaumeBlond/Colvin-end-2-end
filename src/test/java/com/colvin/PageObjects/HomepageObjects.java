@@ -14,6 +14,8 @@ public class HomepageObjects extends HomepageSteps {
     public static final String USER_EMAIL = "jaume.ros.97@gmail.com";
     public static final String USER_PASSWORD = "ColvinTest1";
 
+    @FindBy(xpath = "//*[@class='wall-close sc-dBfaGr hNznqf']")
+    WebElement popupNotification;
 
     @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
     WebElement cookiesAccept;

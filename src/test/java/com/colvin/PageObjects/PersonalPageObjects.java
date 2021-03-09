@@ -32,7 +32,13 @@ public class PersonalPageObjects {
     @FindBy(xpath = "//*[@class='cta--green cta--inline']")
     WebElement addReminder;
 
-    @FindBy(xpath = "//*[@class='bh-button-modify-special-date links']")
+    @FindBy(xpath = "//*[@class='user-logout']")
+    WebElement signOff;
+
+    @FindBy(xpath = "//*[@class='bh-button-remove-special-date link mobile-hidden']")
+    WebElement deleteReminder;
+
+    @FindBy(xpath = "/html/body/main/div/div/section/div/div[3]/div/a")
     WebElement modifyReminder;
 
     @FindBy(xpath ="//*[@id='customer_special_date_name']")
@@ -60,6 +66,55 @@ public class PersonalPageObjects {
 
     @FindBy(xpath = "//b[text() = 'Test Colvin']")
     WebElement reminderAdded;
+
+    @FindBy(xpath = "/html/body/main/div/div/section[3]/div/p")
+    WebElement noPurchases;
+
+    @FindBy(xpath = "//*[@class='promotion-use']")
+    WebElement usePromotion;
+
+    @FindBy(xpath ="//*[@id='gtm-referafriend-share-facebook']")
+    WebElement isFacebook;
+
+    @FindBy(xpath ="//*[@id='gtm-referafriend-share-email']")
+    WebElement isEmail;
+
+    @FindBy(xpath ="//*[@id='gtm-referafriend-share-whatsapp']")
+    WebElement isWhatsapp;
+
+    @FindBy(xpath ="//*[@class='gtm-referafriend-share-twitter']")
+    WebElement isTwitter;
+
+    @FindBy(xpath = "/html/body/main/div/div/section[2]/div/a[1]")
+    WebElement modifyData;
+
+    @FindBy(xpath = "//*[@id='settings_gender']")
+    WebElement clickGeneder;
+
+    @FindBy(xpath = "//*[@id=\"settings_gender\"]/option[2]")
+    WebElement selectGender;
+
+    @FindBy(xpath = "//*[@id='settings_address_street']")
+    WebElement street;
+
+    @FindBy(xpath = "//*[@id='settings_address_floor']")
+    WebElement floor;
+
+    @FindBy(xpath = "//*[@id='settings_address_city']")
+    WebElement city;
+
+    @FindBy(xpath = "//*[@id='settings_address_postalCode']")
+    WebElement postalCode;
+
+    @FindBy(xpath = "//*[@id='settings_address_countryCode']/option[2]")
+    WebElement countryCode;
+
+    @FindBy(xpath = "//*[@class='flash-text']")
+    WebElement saved;
+
+    @FindBy(xpath = "//*[@class='cta--inline cta--green subscribe-cta']")
+    WebElement getSubscriptions;
+
 
     public PersonalPageObjects(){
         PageFactory.initElements(DriverFactory.getDriver(), this);

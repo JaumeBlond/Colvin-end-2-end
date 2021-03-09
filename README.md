@@ -24,23 +24,19 @@ Finally, from the feature file it can be run by clicking the run icon on the lef
 ##Why Selenium instead of Cypress
 
 In QA is important to identify the different types of testing can be made, and depending on which is the goal of it, so for this decision
-we will take in count what are we testing and who typically performs these test in particular the integration testing, and the end-2-end testing
+we will take into account what are we testing and who typically performs these test in particular the integration testing, and the end-2-end testing
 
 ###Types of Test
-It is important to define and specify the difference between this kind of test as it changes the technologies and the strategies
+It is important to define and specify the difference between this kind of test as it changes technologies and strategies
 
-####end2end test
-The goal of the end 2 end testing is to verify that all the components and elements that are used
+####end-2-end test
+The goal of the end-2-end testing is to verify that all the components and elements are
 within the interaction of the user works
 
 ####Integration test
-The goal for the integration test is to verify that the integration of something new within the component is working.
-Typically, in a software companies when a new development is completed the Devs add their Unit test, which verifies that
-the element works, but not as an all, so the scope for the integration is to check the correct "Integration" of it.
-
-
-As the goal of this test was to develop a test for a flow of my choose I decide that using selenium, which is a framework
-focused on testers was the best choice overall.
+The goal for the integration test is to verify the integration of something new within the component is working.
+Typically, in a software companies when a new development is completed, the Devs add their Unit test, which verifies
+the element works, but not as a whole, so the scope for the integration is to check the correct "Integration" of it.
 
 Selenium has a huge community, and good documentation to build a proper and sustainable framework with the desired language.
 Although the learning curve is harder that cypress, any new QA can learn by shadowing a bit from someone more senior.
@@ -51,25 +47,28 @@ that test as an integration test, allowing that either devs or QA engineers can 
 
 In the document attached I give a high level overview of both capabilities and specs.
 
-Also working with selenium allows the framework to be suitable for app testing by adding appium.
+As the goal of this test was to develop a test for a flow of my choose, I decide that using selenium, which is a framework
+focused on the testing of the UI and QA focused, so it  was the best choice overall. Also working with selenium allows the 
+framework to be suitable for app testing by adding appium.
+
 ##Cucumber
 
 The importance of the use of cucumber nowadays relies on the possibility to speak the same language that the business
-stakeholders allowing discussing if the test are covering all the necessities and be all at the same page.
-Also, it is focused to BDD testing, allowing us to mock the user interactions properly. Besides, is the framework most widely used
-within the QA community
+stakeholders, allowing to discuss if the test are covering all the necessities and being all at the same page.
+Also, it is focused to BDD testing, which allows us to mock the user interactions properly. Besides, it is the framework most widely 
+used within the QA community.
 
 Cucumber also provides an internal reporting tool where we can identify why the test has failed.
 
 ##JAVA
 This decision was taken thinking on the test, and the velocity I can get it running, but can be built using several languages 
-such as Python, C#, Java, Python, Ruby, JavaScript. The language decision can be changed as long as the framework skeleton for any
-test suite can be the same.
+such as C#, Java, Python, Ruby, JavaScript. The language decision can be changed as long as the framework skeleton for any
+lang can be the same.
 
 ##TEST SUITE ARCHITECTURE
 
-This kind of architecture is scalable as long as everytime something is added or changed as the development is page-oriented
-meaning for each page that the website/app has it exist diferent classes defining which steps are done there, which actions can be taken
-which elements are inside. This allows us to encapsulate the code and be highly reusable for the future test.
+This kind of architecture is scalable as long as everytime something is added or changed, as the development of it is page-oriented,
+meaning for each page that the website/app has it exists different classes defining which steps are done there, which actions can be taken
+and which elements are inside. This allows us to encapsulate the code and be highly reusable for the future test.
 
 In this test is not developed but Cucumber allows us to build it inside several CI tools and external utils such as report portals or dockers

@@ -13,6 +13,8 @@ import com.colvin.PageObjects.HomepageObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
+import javax.swing.text.AbstractDocument;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -39,7 +41,8 @@ public class HomepageSteps {
 
     @Then("a user log-in using valid credentials")
     public void userDoLogin(){
-        actions.setImplicitWait(5);
+        actions.waitForElementToLoad(elems.getPopupNotification());
+        elems.getPopupNotification().click();
         elems.getUserButton().click();
         try {
             elems.getLoginSwitch().click();
@@ -57,7 +60,7 @@ public class HomepageSteps {
     }
 
     @And("Accept the cookies")
-    public void acceptTheCookies() throws InterruptedException {
+    public void acceptTheCookies() {
         actions.waitForPageToLoad(2);
         elems.getCookiesAccept().click();
     }
@@ -65,15 +68,28 @@ public class HomepageSteps {
 
     @Then("the login page is shown")
     public void theLoginPageIsShown() {
+        try {
+            assertThat(elems.getLoginSwitch().isDisplayed(),is(true));
+        } catch (Exception e){
+            try{
+                System.out.println("Derived to the old login");
+                assertThat(elems.getOldEmailInput().isDisplayed(),is(true));
+            } catch (Exception e2) {
+                assertThat("Not on login page at all", is(false), is(true));
+            }
+        }
 
     }
 
-    @And("click on personalpage")
+    @And("I click on personalpage")
     public void clickOnPersonalpage() {
-
+        elems.getUserButton().click();
     }
 
-    @Then("i am redirected to the shop with my discount")
-    public void iAmRedirectedToTheShopWithMyDiscount() {
+    @Then("I get to homepage")
+    public void iGetToHomepage() {
+        actions.waitForElementToLoad(elems.getPopupNotification());
+        assertThat("Not redirected",elems.getPopupNotification().isDisplayed(),is(true));
+        elems.getPopupNotification().click();
     }
 }

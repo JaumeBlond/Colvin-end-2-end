@@ -27,6 +27,7 @@ public class Hook {
         prefs.put("profile.default_content_setting_values.notifications", 2);
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
+        options.setExperimentalOption("detach", true);
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(options);
         DriverFactory.addDriver(driver);
@@ -34,15 +35,19 @@ public class Hook {
 
     @After
     public void tearDown(Scenario scenario) throws IOException {
-        driver=DriverFactory.getDriver();
-        if (scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) driver)
-                    .getScreenshotAs(OutputType.BYTES);
-            ByteArrayInputStream bis = new ByteArrayInputStream(screenshot);
-            BufferedImage bImage2 = ImageIO.read(bis);
-            ImageIO.write(bImage2, "jpg", new File("output.jpg") );
+        try{
+            driver=DriverFactory.getDriver();
+            if (scenario.isFailed()) {
+                final byte[] screenshot = ((TakesScreenshot) driver)
+                        .getScreenshotAs(OutputType.BYTES);
+                ByteArrayInputStream bis = new ByteArrayInputStream(screenshot);
+                BufferedImage bImage2 = ImageIO.read(bis);
+                ImageIO.write(bImage2, "jpg", new File("output.jpg"));
+            }
         }
-        driver.close();
+        finally {
+            driver.quit();
+        }
     }
 
     public WebDriver getdriver(){
