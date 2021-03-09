@@ -4,6 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -34,22 +35,22 @@ public class Hook {
     }
 
     @After
-    public void tearDown(Scenario scenario) throws IOException {
-        try{
-            driver=DriverFactory.getDriver();
-            if (scenario.isFailed()) {
-                final byte[] screenshot = ((TakesScreenshot) driver)
-                        .getScreenshotAs(OutputType.BYTES);
-                ByteArrayInputStream bis = new ByteArrayInputStream(screenshot);
-                BufferedImage bImage2 = ImageIO.read(bis);
-                ImageIO.write(bImage2, "jpg", new File("output.jpg"));
-            }
+    public void tearDown(Scenario scenario) throws Exception {
+        driver=DriverFactory.getDriver();
+        if(scenario.isFailed()){
+            takeSnapShot(driver, "target/generated-test-sources/screenshots/"+scenario.getName()+".png") ;
         }
-        finally {
             driver.quit();
         }
-    }
 
+    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+
+        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+        File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile=new File(fileWithPath);
+        FileUtils.copyFile(SrcFile, DestFile);
+
+    }
     public WebDriver getdriver(){
             return driver;
     }

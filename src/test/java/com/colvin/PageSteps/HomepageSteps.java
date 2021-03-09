@@ -41,9 +41,13 @@ public class HomepageSteps {
 
     @Then("a user log-in using valid credentials")
     public void userDoLogin(){
-        actions.waitForElementToLoad(elems.getPopupNotification());
-        elems.getPopupNotification().click();
-        elems.getUserButton().click();
+        try {
+            actions.waitForElementToLoad(elems.getPopupNotification());
+            elems.getPopupNotification().click();
+            elems.getUserButton().click();
+        } catch (Exception e) {
+            elems.getUserButton().click();
+        }
         try {
             elems.getLoginSwitch().click();
             elems.getEmailInput().sendKeys(HomepageObjects.USER_EMAIL);

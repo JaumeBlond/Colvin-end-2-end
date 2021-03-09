@@ -74,18 +74,19 @@ public class PersonalPageSteps {
     @And("click on submit")
     public void clickOnSubmit() {
         elements.getSubmitButton().click();
+        elements.getReminders().click();
     }
 
     @Then("the reminder is {string}")
     public void aNewReminderIsAdded(String action) {
         switch (action.toUpperCase()){
-            case "added":
-                assertThat("A new reminder hasn't been added", elements.getReminderAdded().isDisplayed(),is(true));
+            case "ADDED":
+                assertThat("A new reminder hasn't been added", elements.getReminderAdded().getText().equals("Test Colvin"),is(true));
                 System.out.println("A new reminder has been added");
                 break;
-            case "deleted":
-                assertThat("A new reminder hasn't been deleted", elements.getReminderAdded().isDisplayed(),is(false));
-                System.out.println("A new reminder has been added");
+            case "DELETED":
+                assertThat("A new reminder hasn't been deleted", elements.getReminderAdded().getText().equals("Test Colvin"),is(false));
+                System.out.println("A new reminder has been deleted");
                 break;
         }
     }

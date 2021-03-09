@@ -64,7 +64,7 @@ public class PersonalPageObjects {
     )
     WebElement submitButton;
 
-    @FindBy(xpath = "//b[text() = 'Test Colvin']")
+    @FindBy(xpath = "//*[@class='info']/b")
     WebElement reminderAdded;
 
     @FindBy(xpath = "/html/body/main/div/div/section[3]/div/p")
