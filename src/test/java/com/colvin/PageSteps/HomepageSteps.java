@@ -45,9 +45,11 @@ public class HomepageSteps {
             actions.waitForElementToLoad(elems.getPopupNotification());
             elems.getPopupNotification().click();
             elems.getUserButton().click();
+            elems.getAccount().click();
         } catch (Exception e) {
             elems.getUserButton().click();
         }
+        https://www.thecolvinco.com/es/checkout/delivery?date_override=2021-05-01%2017:30:00
         try {
             elems.getLoginSwitch().click();
             elems.getEmailInput().sendKeys(HomepageObjects.USER_EMAIL);
@@ -95,5 +97,10 @@ public class HomepageSteps {
         actions.waitForElementToLoad(elems.getPopupNotification());
         assertThat("Not redirected",elems.getPopupNotification().isDisplayed(),is(true));
         elems.getPopupNotification().click();
+    }
+
+    @And("Hit {string} on your browser in {string}")
+    public void hitOnYourBrowserInCountry(String url, String arg0) {
+            driver.get("https://"+url+arg0);
     }
 }

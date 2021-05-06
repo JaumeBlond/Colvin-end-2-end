@@ -18,7 +18,7 @@ import java.util.Map;
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue = {"com.colvin.PageSteps","com.colvin.Hooks"},
-        tags = "",
+        tags = "@MothersDay",
         plugin = {
                 "pretty",
                 "html:target/cucumber-html-report",

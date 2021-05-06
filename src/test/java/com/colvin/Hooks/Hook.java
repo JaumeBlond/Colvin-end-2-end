@@ -1,16 +1,21 @@
 package com.colvin.Hooks;
 
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import com.colvin.Driver.DriverFactory;
+import org.apache.log4j.Logger;
+
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,6 +27,8 @@ import java.util.Map;
 
 public class Hook {
     WebDriver driver;
+    static Logger logger = Logger.getLogger("stdout");
+
     @Before
     public void setup(){
         Map<String, Object> prefs = new HashMap<String, Object>();
@@ -30,6 +37,7 @@ public class Hook {
         options.setExperimentalOption("prefs", prefs);
         options.setExperimentalOption("detach", true);
         WebDriverManager.chromedriver().setup();
+        DOMConfigurator.configure("log4j.xml");
         WebDriver driver = new ChromeDriver(options);
         DriverFactory.addDriver(driver);
     }

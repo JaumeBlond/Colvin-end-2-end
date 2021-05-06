@@ -14,14 +14,17 @@ public class HomepageObjects extends HomepageSteps {
     public static final String USER_EMAIL = "jaume.ros.97@gmail.com";
     public static final String USER_PASSWORD = "ColvinTest1";
 
-    @FindBy(xpath = "//*[@class='wall-close sc-dBfaGr hNznqf']")
+    @FindBy(css = "#__next > div > div > div.sc-bdvvaa.sc-gsDJrp.hVwtVH.hIptFD.sc-jJoQpE.cmGyex > div.sc-kHOZQx.gaHvAf > a > div > div.sc-bdvvaa.sc-gsDJrp.hVwtVH.cfDiPW > svg > path")
     WebElement popupNotification;
 
     @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
     WebElement cookiesAccept;
 
-    @FindBy(xpath = "//a[text()='Mi cuenta']")
+    @FindBy(css = "#__next > div > div > div.sc-bdvvaa.sc-gsDJrp.hVwtVH.hIptFD.sc-jJoQpE.cmGyex > div.sc-bTfYlY.dbeeYc > header > div > div > button:nth-child(2) > div")
     WebElement UserButton;
+
+    @FindBy(xpath = "//*[@id=\"radix-id-0-2\"]/div[1]")
+    WebElement account;
 
     @FindBy(xpath = "//*[@href='javascript:void(0)']")
     WebElement loginSwitch;

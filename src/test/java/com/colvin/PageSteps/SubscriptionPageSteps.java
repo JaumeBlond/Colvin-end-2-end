@@ -3,7 +3,7 @@ package com.colvin.PageSteps;
 import com.colvin.Actions.Actions;
 import com.colvin.Driver.DriverFactory;
 import com.colvin.PageObjects.PersonalPageObjects;
-import com.colvin.PageObjects.PurchaseFlowerObjects;
+import com.colvin.PageObjects.CollectionsObjects;
 import com.colvin.PageObjects.SubscriptionPageObjects;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
